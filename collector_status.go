@@ -40,12 +40,21 @@ func (s *sabnzbdStatusCollector) Collect(ch chan<- prometheus.Metric) {
 			ch <- prometheus.MustNewConstMetric(statusServerTotalConn, prometheus.GaugeValue, float64(server.TotalConn), serverHost)
 			ch <- prometheus.MustNewConstMetric(statusServerSSL, prometheus.GaugeValue, float64(server.SSLEnabled), serverHost)
 			ch <- prometheus.MustNewConstMetric(statusServerPriority, prometheus.GaugeValue, float64(server.Priority), serverHost)
+
 			splitValUnit := strings.Split(server.BPS, " ")
-			valStr, unit := splitValUnit[0], splitValUnit[1]
+			valStr := splitValUnit[0]
+			unit := ""
+
 			val, err := strconv.ParseFloat(valStr, 64)
+
+			if len(splitValUnit) == 2 {
+				unit = splitValUnit[1]
+			}
+
 			if err != nil {
 				log.Println("error parsing float", valStr, ":", err)
 			}
+			
 			switch unit {
 			case "":
 				break
