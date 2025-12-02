@@ -1,4 +1,4 @@
-module github.com/mohamed-essam/sabnzbd-exporter
+module github.com/geewizwow/sabnzbd-exporter
 
 go 1.21.6
 
