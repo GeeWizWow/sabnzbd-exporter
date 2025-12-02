@@ -5,7 +5,7 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 ENV CGO_ENABLED=0
-RUN go build -o exporter . -tags timetzdata
+RUN go build -tags timetzdata -o exporter .
 
 FROM alpine:latest
 COPY --from=builder /go/src/github.com/geewizwow/sabnzbd-exporter/exporter .
