@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"time"
+	"time/tzdata"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
