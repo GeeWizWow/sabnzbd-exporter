@@ -8,7 +8,7 @@ import (
 )
 
 func call(into interface{}, args map[string]string) error {
-	uri := fmt.Sprintf("%s/sabnzbd/api?output=json&apikey=%s", *sabnzbdAddress, *sabnzbdAPIKey)
+	uri := fmt.Sprintf("%s/api?output=json&apikey=%s", *sabnzbdAddress, *sabnzbdAPIKey)
 	for k, v := range args {
 		uri = fmt.Sprintf("%s&%s=%s", uri, k, v)
 	}
